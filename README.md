@@ -59,9 +59,11 @@ lark-cli whiteboard +update --whiteboard-token <block_token> --source @board.jso
 |---|---|
 | `lark-cli` | 需先完成认证（`--as user`） |
 | `@larksuite/whiteboard-cli` | 通过 `npx` 调用，无需预装 |
-| **beautiful-feishu-whiteboard** skill | 设计规范来源：`RULES.md` 硬规则 + 35 套模板的配色与版式 |
+| `references/RULES.md` | 白板渲染硬规则（已内置） |
+| `references/styles/` | 31 套配色模板的 design.md（已内置） |
 
-> `beautiful-feishu-whiteboard` 不在本仓库内，作为配套技能单独维护。
+> 设计规范与配色模板已从 `beautiful-feishu-whiteboard` 抽取内置到 `references/`，拿到本仓库即可独立使用。
+> 风格索引见 [`references/STYLES.md`](references/STYLES.md)。
 
 ## 踩坑记录（这几条值钱）
 

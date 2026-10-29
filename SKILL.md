@@ -23,9 +23,9 @@ BlockFrame / Burst Panel / Confetti Wedge / Court Press / Crayon Stack / Grove B
 ## 核心流程
 
 ### Step 1: 生成 SVG 白板图
-- 使用 `beautiful-feishu-whiteboard` skill 的设计规范
-- 参考 `beautiful-feishu-whiteboard` skill 的 `RULES.md` 硬规则（Noto Sans SC 字体、`<text>` 元素、不轮廓化）
-- 选择合适的模板风格（参考上方 35 种风格）
+- 使用 `references/RULES.md` 的设计硬规则
+- 严格遵守 `references/RULES.md`（Noto Sans SC 字体、用 `<text>` 元素、不轮廓化、不用透明度）
+- 选择合适的风格：先看 `references/STYLES.md` 索引，再读对应的 `references/styles/<slug>/design.md`
 - 布局建议：1600 宽，2200 高以内
 
 ### Step 2: 渲染 PNG 预览
@@ -85,7 +85,7 @@ lark-cli whiteboard +update --whiteboard-token <block_token> --source @<openapi_
 ## 依赖项
 - `lark-cli` (@larksuite/cli) 已认证
 - `@larksuite/whiteboard-cli` (npx)
-- `beautiful-feishu-whiteboard` skill（设计规范参考）
+- 设计规范与 31 套配色模板：已内置在 `references/`，无需额外安装
 
 ## 适用场景
 - 方案宣贯、数据汇报、知识沉淀
