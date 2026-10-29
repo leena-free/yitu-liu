@@ -11,6 +11,13 @@
 
 产出的是**真白板**（可在飞书里继续拖拽编辑），不是一张截图。
 
+**也可以完全不要飞书** —— 只跑 SVG → PNG，一张图直接拿走。两种模式共用同一套风格模板：
+
+| 模式 | 产出 | 要飞书吗 | 适合 |
+|---|---|---|---|
+| 白板模式 | 可编辑白板 + 文档链接 | 要（lark-cli 授权） | 别人还要改、要嵌文档 |
+| 纯图片模式 | 一张 PNG（2~3 倍图） | **不要** | 贴 PPT、发群、终稿 |
+
 ## 管线
 
 ```
@@ -40,6 +47,9 @@
 ## 快速开始
 
 ```bash
+# 0. 只要图片？一条命令搞定（不需要飞书授权）
+node scripts/render.js -i board.svg -o board.png -s 2
+
 # 1. 渲染预览
 npx -y @larksuite/whiteboard-cli@^0.2.11 -i board.svg --to image --output board.png -s 2
 
@@ -57,7 +67,7 @@ lark-cli whiteboard +update --whiteboard-token <block_token> --source @board.jso
 
 | 依赖 | 说明 |
 |---|---|
-| `lark-cli` | 需先完成认证（`--as user`） |
+| `lark-cli` | **仅白板模式需要**，需先完成认证（`--as user`）；纯图片模式不用 |
 | `@larksuite/whiteboard-cli` | 通过 `npx` 调用，无需预装 |
 | `references/RULES.md` | 白板渲染硬规则（已内置） |
 | `references/styles/` | 31 套配色模板的 design.md（已内置） |

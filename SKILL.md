@@ -9,6 +9,24 @@ metadata: { "openclaw": { "emoji": "🎨" } }
 ## 功能概述
 输入任意主题和视觉风格，一键生成精美的飞书白板（嵌入文档），返回可访问的链接。
 
+## 两种输出模式（先确认要哪种）
+
+| 模式 | 产出 | 需要飞书吗 | 适用 |
+|---|---|---|---|
+| **白板模式** | 可编辑的飞书白板 + 文档链接 | 需要 lark-cli 授权 | 别人还要继续改、要嵌进飞书文档 |
+| **纯图片模式** | 一张 PNG（可 2~3 倍图） | **完全不需要** | 贴 PPT、发群、公众号配图、终稿 |
+
+判断一句话：**要别人接着改 → 白板；只要一张图 → 纯图片。**
+
+### 纯图片模式（最短路径）
+
+```bash
+node scripts/render.js -i board.svg -o board.png -s 2      # 2 倍图
+node scripts/render.js -i board.svg --engine chrome        # 离线 / npx 不可用时
+```
+
+只做 Step 1（画 SVG）+ 这一步，**Step 2~5 全部跳过**，不登录、不建文档、不调接口。
+
 ## 35种风格一览
 
 **克制（Restrained）— 9种**：安静、编辑感、适合严肃汇报
@@ -20,7 +38,9 @@ Apricot Arc / Berry Pop / Bold Poster / Checker Bloom / Cobalt Bloom / Coral / C
 **张扬（Bold）— 11种**：高饱和、视觉冲击、适合活动宣贯
 BlockFrame / Burst Panel / Confetti Wedge / Court Press / Crayon Stack / Grove Block / Mint Brut / Neo-Grid Bold / Riso Brut / Specimen Bold / Stencil & Tablet
 
-## 核心流程
+## 核心流程（白板模式）
+
+> 只要图片的话，做完 Step 1 直接跑 `scripts/render.js`，其余步骤跳过。
 
 ### Step 1: 生成 SVG 白板图
 - 使用 `references/RULES.md` 的设计硬规则
@@ -29,6 +49,8 @@ BlockFrame / Burst Panel / Confetti Wedge / Court Press / Crayon Stack / Grove B
 - 布局建议：1600 宽，2200 高以内
 
 ### Step 2: 渲染 PNG 预览
+
+默认用 whiteboard-cli；如果 npx 不可用（网络受限 / 缓存目录无权限），换 `--engine chrome` 用本地浏览器渲染，效果等价。
 ```bash
 npx -y @larksuite/whiteboard-cli@^0.2.11 -i <svg_path> --to image --output <png_path> -s 2
 ```
